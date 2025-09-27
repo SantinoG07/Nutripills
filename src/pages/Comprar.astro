@@ -4,6 +4,45 @@ import "../styles/global.css";
 ---
 
 <Layout>
-    <body class="bg-red-100">
+    <body class="bg-black">
+        <main class="container mx-auto px-4 py-8">
+                <div class="md:flex">
+                    <div class="md:w-1/2">
+                        <img class="w-full h-full object-cover" src="/images.jpg" alt="Product Image">
+                    </div>
+                    <div class="p-8 md:w-1/2 flex flex-col justify-center">
+                        <h1 class="text-3xl font-bold text-gray-800 mb-4">Nutri pills</h1>
+                        <p class="text-3xl font-bold text-gray-800">$99.99</p>
+
+                        <div class="w-50 mt-10">
+                        <h2>Gusto:</h2>
+                        <select id="options" name="options"
+                            class="w-full px-4 py-3 bg-gray-700 text-gray-300 font-bold uppercase rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 cursor-pointer">
+                            <option >Choose wisely</option>
+                            <option >Wow!</option>
+                            <option >So dropdown!</option>
+                            <option >Very select!</option>
+                        </select>
+                        </div>
+
+                        <div class="w-50 mt-10 mb-10">
+                        <h2>Cantidad:</h2>
+                        <select id="options" name="options"
+                            class="w-full px-4 py-3 bg-gray-700 text-gray-300 font-bold uppercase rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 cursor-pointer">
+                                <option >Choose wisely</option>
+                                <option >Wow!</option>
+                                <option >So dropdown!</option>
+                                <option >Very select!</option>
+                        </select>
+                        </div>
+                        
+
+
+                        <button class="w-50 bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded">
+                            Buy Now
+                        </button>
+                    </div>
+                </div>
+        </main>
     </body>
 </Layout>
