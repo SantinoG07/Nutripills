@@ -1,35 +1,30 @@
 ---
-import TextInput from "../components/TextInput.astro";
-import Layout from "../layouts/Layout.astro";
+const { tipo } = Astro.props;
 ---
-
-<Layout>
 <div class="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-800">
-<div class="flex flex-col bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
-<label for="Notes" class="flex flex-col gap-2">
-    <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Texto</span>
+  <div class="flex flex-col bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+    <label for="Notes" class="flex flex-col gap-2">
+      <span class="text-sm font-medium text-gray-700 dark:text-gray-200">{tipo}</span>
 
-    <textarea 
+      <textarea 
         id="Notes"
-        class="mt-0.5 w-80 resize-none rounded border-gray-800 shadow-sm sm:text-sm "
+        class="mt-0.5 w-80 resize-none rounded border-gray-300 shadow-sm sm:text-sm dark:border-gray-600 dark:bg-gray-900 dark:text-white"
         rows="4">
-    </textarea>
+      </textarea>
     </label>
 
     <div class="mt-3 flex items-center justify-center gap-2">
-    <button 
+      <button 
         type="button"
         class="rounded border border-transparent px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900 dark:text-gray-200 dark:hover:text-white">
         Limpiar
-    </button>
+      </button>
 
-    <button 
+      <button 
         type="button"
         class="rounded border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100 dark:border-gray-600 dark:text-white dark:hover:bg-gray-700">
         Enviar
-    </button>
+      </button>
     </div>
+  </div>
 </div>
-</div>
-
-</Layout>
