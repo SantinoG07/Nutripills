@@ -5,30 +5,66 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout>
 <div class="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-800">
-<div class="flex flex-col bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
-<label for="Notes" class="flex flex-col gap-2">
-    <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Texto</span>
+<div class="flex flex-col bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg max-w-md w-full">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Contáctanos</h2>
+    
+    <form action="https://api.web3forms.com/submit" method="POST" class="flex flex-col gap-4">
+        <input type="hidden" name="access_key" value="3f16d6a4-b4d7-4afa-a8b1-1928693a972e">
+        <input type="hidden" name="subject" value="Nuevo mensaje desde Nutripills">
+        <input type="hidden" name="from_name" value="Formulario Nutripills">
+        
+        <!-- Campo honeypot para prevenir spam -->
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+        
+        <div class="flex flex-col gap-2">
+            <label for="name" class="text-sm font-medium text-gray-700 dark:text-gray-200">
+                Nombre completo
+            </label>
+            <input 
+                type="text" 
+                name="name" 
+                id="name"
+                required
+                minlength="3"
+                class="w-full rounded border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+                placeholder="Ricardo Mollo">
+        </div>
 
-    <textarea 
-        id="Notes"
-        class="mt-0.5 w-80 resize-none rounded border-gray-800 shadow-sm sm:text-sm "
-        rows="4">
-    </textarea>
-    </label>
+        <div class="flex flex-col gap-2">
+            <label for="email" class="text-sm font-medium text-gray-700 dark:text-gray-200">
+                Correo electrónico
+            </label>
+            <input 
+                type="email" 
+                name="email" 
+                id="email"
+                required
+                class="w-full rounded border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+                placeholder="RichardMollo@gmail.com">
+        </div>
 
-    <div class="mt-3 flex items-center justify-center gap-2">
-    <button 
-        type="button"
-        class="rounded border border-transparent px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900 dark:text-gray-200 dark:hover:text-white">
-        Limpiar
-    </button>
+        <div class="flex flex-col gap-2">
+            <label for="message" class="text-sm font-medium text-gray-700 dark:text-gray-200">
+                Mensaje
+            </label>
+            <textarea 
+                id="message"
+                name="message"
+                required
+                minlength="10"
+                class="w-full resize-none rounded border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+                rows="5"
+                placeholder="Escribe tu mensaje aquí... (mínimo 10 caracteres)"></textarea>
+        </div>
 
-    <button 
-        type="button"
-        class="rounded border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100 dark:border-gray-600 dark:text-white dark:hover:bg-gray-700">
-        Enviar
-    </button>
-    </div>
+        <div class="mt-3 flex items-center justify-center gap-2">
+            <button 
+                type="submit"
+                class="w-full rounded border border-gray-300 px-4 py-2 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100 dark:border-gray-600 dark:text-white dark:hover:bg-gray-700">
+                Enviar mensaje
+            </button>
+        </div>
+    </form>
 </div>
 </div>
 
