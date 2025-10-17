@@ -2,9 +2,11 @@
 import "../styles/global.css";
 import BotonComprar from "./BotonComprar.astro";
 import BotonHeader from "./BotonHeader.astro";
+
+const { escondercomprar = false } = Astro.props;
 ---
 
-<header class="bg-white dark:bg-gray-900">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-transparent backdrop-blur-sm " >
 <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
 
@@ -25,15 +27,15 @@ import BotonHeader from "./BotonHeader.astro";
         <nav aria-label="Global" class="hidden md:block">
             
             <BotonHeader nombre="Inicio" id="/"/>
-            <BotonHeader nombre="Acerca de" id="Acerca"/>
-            <BotonHeader nombre="Contacto" id="Contacto"/>
-            <BotonComprar />
-        
+            <BotonHeader nombre="Acerca de" id="/Acerca"/>
+            <BotonHeader nombre="Contacto" id="/Contacto"/>
+            {!escondercomprar && <BotonComprar />}
+
         </nav>
 
-        
-        </div>
+    </div>
     </div>
     </div>
 </div>
 </header>
+
