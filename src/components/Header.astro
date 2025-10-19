@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import BotonComprar from "./BotonComprar.astro";
 import BotonHeader from "./BotonHeader.astro";
+import BotonCarrito from "./BotonCarrito.astro"
 
 const { escondercomprar = false } = Astro.props;
 ---
@@ -24,11 +25,12 @@ const { escondercomprar = false } = Astro.props;
     </div>
 
     <div class="md:flex md:items-center md:gap-12">
-        <nav aria-label="Global" class="hidden md:block">
+        <nav aria-label="Global" class="hidden md:flex md:items-center md:gap-2">
             
             <BotonHeader nombre="Inicio" id="/"/>
             <BotonHeader nombre="Acerca de" id="/Acerca"/>
             <BotonHeader nombre="Contacto" id="/Contacto"/>
+            <BotonCarrito/>
             {!escondercomprar && <BotonComprar />}
 
         </nav>

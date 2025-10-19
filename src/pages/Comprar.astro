@@ -3,10 +3,11 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout escondercomprar={true}>
+    
         <main class="container mx-auto px-4 py-8 mt-16">
                 <div class="md:flex">
                     <div class="md:w-1/2">
-                        <img class="w-full h-full object-cover" src="../../public/pildora_vr.png" alt="Product Image">
+                        <img id="imagenprod" class="w-full h-full object-cover" src="/pildora_vr.png" alt="Product Image">
                     </div>
                     <div class="p-8 md:w-1/2 flex flex-col justify-center">
                         <h1 class="text-3xl font-bold text-white mb-4">Nutri pills</h1>
@@ -16,29 +17,62 @@ import Layout from '../layouts/Layout.astro';
                         <h2 class="font-bold text-white">Sabor:</h2>
                         <select id="options" name="options"
                             class="w-full px-4 py-3 bg-gray-700 text-gray-300 focus:outline-none focus:ring-0 font-bold rounded-md cursor-pointer">
-                            <option >Clasico</option>
-                            <option >Wow!</option>
-                            <option >So dropdown!</option>
-                            <option >Very select!</option>
-                            <option >Very select!</option>
+                            <option value="Clasico">Clasico</option>
+                            <option value="Wow!">Wow!</option>
+                            <option value="So dropdown!">So dropdown!</option>
+                            <option value="Very select!">Very select!</option>
+                            <option value="Very select!">Very select!</option>
                         </select>
                         </div>
 
                         <div class="w-50 mt-10 mb-10">
                         <h2 class="font-bold text-white">Cantidad:</h2>
-                        <select id="options" name="options"
+                        <select id="cantidad" name="options"
                             class="w-full px-4 py-3 bg-gray-700 text-gray-300 focus:outline-none focus:ring-0 font-bold rounded-md cursor-pointer">
-                                <option >1</option>
-                                <option >2</option>
-                                <option >3</option>
-                                <option >4</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
                         </select>
                         </div>
                         
 
 
-                        <a href="/CompraF" class="w-50 bg-rojooscuro hover:bg-rojoclaro cursor-pointer text-white font-bold py-3 px-6 rounded">Comprar</a>
+                        <a href="/CompraF" class="w-50 bg-rojooscuro hover:bg-rojoclaro cursor-pointer text-white font-bold py-3 px-6 rounded">Agregar al carrito</a>
                     </div>
                 </div>
         </main>
+    <script type="module">
+        const imagelist = {
+        'Clasico': '/pildora_vr.png',
+        'Wow!': '/pildora_ar.png',
+        'So dropdown!': '/pilora_va.png',
+        'Very select!': '/pildora_rr.png'
+        }
+        const seleccion = document.querySelector('#options'); //Pedimos buscar en el documento el componente que tenga id opciones
+        const imgselec = document.querySelector('#imagenprod');
+
+        function cambiarimg (){
+            const saborselec = seleccion.value;
+
+            if(imagelist[saborselec]){
+                imgselec.src = imagelist[saborselec];
+            }
+
+        };
+        
+        const cant = document.querySelector('#cantidad');
+        function guardarcant(){
+            const cantf = cant.value;
+            return cantf;
+        }
+
+        seleccion?.addEventListener('change', cambiarimg);
+        cant?.addEventListener('change', guardarcant);
+
+
+
+    </script>
+
 </Layout>
+
