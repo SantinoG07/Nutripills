@@ -1,30 +1,145 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
-import CardProducto from "../components/CardProducto.astro"
 ---
 <Layout>
-    <div class="flex flex-col items-center justify-center min-h-screen">
-        <CardProducto/> 
-    
-    <div class="mt-8 flex justify-center border-t border-gray-100 w-200 pt-8 dark:border-gray-700">
-        <div class="w-screen max-w-lg space-y-4">
+    <div class="flex flex-col items-center justify-center min-h-screen py-8"> 
 
-            <div class="flex justify-between">
-            <p class="text-white">Subtotal</p>
-            <p class="text-white" id="subtotal">$10.000</p>
-            </div>
+        <template id="templateCard">
+            <div class="bg-gray-900 rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow w-full mb-4"> 
+                <div class="flex gap-8 items-center">
+                    <!-- Imagen del producto -->
+                    <img src="/pildora_vr.png" alt="Nutri Pills" class="imagenProducto w-32 h-32 rounded-lg object-cover flex-shrink-0"/>
+                
+                    <!-- Información del producto -->
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-2xl font-bold text-white mb-4">Nutri Pills</h3>
 
-            <div class="flex justify-between">
-            <p class="text-white">Envío</p>
-            <p class="text-white">$2.500</p>
-            </div>
+                        <div class="space-y-3 text-base">
+                            <!-- Sabor -->
+                            <div class="flex gap-3">
+                                <span class="font-semibold text-gray-400 w-24">Sabor:</span>
+                                <span class="saborCarrito text-white">Clásico</span>
+                            </div>
+                        
+                            <!-- Precio -->
+                            <div class="flex gap-3">
+                                <span class="font-semibold text-gray-400 w-24">Precio:</span>
+                                <span class="precioCarrito text-verdeclaro font-bold text-lg">$10.000</span> 
+                            </div>
+                        
+                            <!-- Cantidad -->
+                            <div class="flex gap-3">
+                                <span class="font-semibold text-gray-400 w-24">Cantidad:</span>
+                                <span class="cantidadCarrito text-white font-bold">1</span>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Botón eliminar -->
+                    <button class="btnEliminar text-rojoclaro hover:text-rojooscuro transition-colors p-3 rounded hover:bg-gray-800 flex-shrink-0" title="Eliminar del carrito">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-7 h-7">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/>
+                        </svg>
+                    </button>
+                </div> 
+            </div> 
+        </template>
 
-            <div class="flex justify-between !text-base font-medium">
-            <p class="text-white">Total</p>
-            <p class="text-white" id="total">$12.500</p>
+        <!-- Contenedor donde se insertan las cards -->
+        <div id="contenedorcarrito" class="space-y-4 w-full max-w-4xl px-4"></div>
+
+        <!-- Carrito vacío -->
+        <div id="carritoVacio" class="hidden text-center py-12">
+            <p class="text-white text-2xl mb-4">Tu carrito está vacío</p>
+            <a href="/Comprar" class="bg-rojooscuro hover:bg-rojoclaro text-white font-bold py-3 px-6 rounded">
+                Ir a comprar
+            </a>
         </div>
-    </div>
+    
+        <div id="resumenPrecios" class="mt-8 flex justify-center border-t border-gray-100 w-full max-w-4xl pt-8 dark:border-gray-700">
+            <div class="w-screen max-w-lg space-y-4">
+                <div class="flex justify-between">
+                    <p class="text-white">Subtotal</p>
+                    <p class="text-white" id="subtotal">$0</p>
+                </div>
 
-    </div>
+                <div class="flex justify-between">
+                    <p class="text-white">Envío</p>
+                    <p class="text-white">$2.500</p>
+                </div>
+
+                <div class="flex justify-between !text-base font-medium">
+                    <p class="text-white">Total</p>
+                    <p class="text-white" id="total">$0</p>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <script type="module">
+        const contenedor = document.querySelector('#contenedorcarrito');
+        const template = document.querySelector('#templateCard');
+        const carritoVacio = document.querySelector('#carritoVacio');
+        const resumenPrecios = document.querySelector('#resumenPrecios');
+        const carrito = JSON.parse(localStorage.getItem('compra')) || []; //Traemos los datos del localstorage, si no existe creamos el array
+        
+        const imagelist = {
+            'Clasico': '/pildora_vr.png',
+            'Wow!': '/pildora_ar.png',
+            'So dropdown!': '/pilora_va.png',
+            'Very select!': '/pildora_rr.png'
+        };
+
+        function calculartotal(){
+            let subtotal = 0;
+            for(let producto of carrito){
+                subtotal = subtotal + producto.precio;
+            }
+            const envio = 2500;
+            const total = subtotal + envio;
+
+            //Modificamos los elementos que tienen los precios
+            document.querySelector('#subtotal').textContent = `$${subtotal.toLocaleString()}`;
+            document.querySelector('#total').textContent = `$${total.toLocaleString()}`;
+        }
+                
+        function eliminardelcarrito(index){
+            carrito.splice(index, 1);
+            localStorage.setItem('compra', JSON.stringify(carrito)); //Volvemos a cargar los datos del carrito
+            dibujarcarrito();
+        }
+
+        function dibujarcarrito() {
+            contenedor.innerHTML = '';
+
+            if (carrito.length === 0) {
+                carritoVacio.classList.remove('hidden');
+                resumenPrecios.classList.add('hidden');
+                return;
+            }
+
+            carritoVacio.classList.add('hidden');
+            resumenPrecios.classList.remove('hidden');
+
+            carrito.forEach((producto, index) => {
+                const clone = template.content.cloneNode(true);
+                
+                clone.querySelector('.imagenProducto').src = imagelist[producto.sabor] || '/pildora_vr.png';
+                clone.querySelector('.saborCarrito').textContent = producto.sabor;
+                clone.querySelector('.precioCarrito').textContent = `$${producto.precio.toLocaleString()}`;
+                clone.querySelector('.cantidadCarrito').textContent = producto.cantidad;
+
+                clone.querySelector('.btnEliminar').addEventListener('click', () => {
+                    eliminardelcarrito(index);
+                });
+
+                contenedor.appendChild(clone);
+            });
+
+            calculartotal();
+        }
+
+        dibujarcarrito();
+    </script>
 </Layout>

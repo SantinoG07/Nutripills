@@ -11,7 +11,7 @@ import Layout from '../layouts/Layout.astro';
                     </div>
                     <div class="p-8 md:w-1/2 flex flex-col justify-center">
                         <h1 class="text-3xl font-bold text-white mb-4">Nutri pills</h1>
-                        <p class="text-3xl font-bold text-white">$10000</p>
+                        <p id="precio" class="text-3xl font-bold text-white">$10000</p>
 
                         <div class="w-50 mt-10">
                         <h2 class="font-bold text-white">Sabor:</h2>
@@ -38,7 +38,7 @@ import Layout from '../layouts/Layout.astro';
                         
 
 
-                        <a href="/CompraF" class="w-50 bg-rojooscuro hover:bg-rojoclaro cursor-pointer text-white font-bold py-3 px-6 rounded">Agregar al carrito</a>
+                        <button id="carrito" name="carrito" class="w-50 bg-rojooscuro hover:bg-rojoclaro cursor-pointer text-white font-bold py-3 px-6 rounded">Agregar al carrito</button>
                     </div>
                 </div>
         </main>
@@ -51,24 +51,56 @@ import Layout from '../layouts/Layout.astro';
         }
         const seleccion = document.querySelector('#options'); //Pedimos buscar en el documento el componente que tenga id opciones
         const imgselec = document.querySelector('#imagenprod');
-
         function cambiarimg (){
             const saborselec = seleccion.value;
-
             if(imagelist[saborselec]){
                 imgselec.src = imagelist[saborselec];
             }
 
         };
         
+        const carrito = document.querySelector('#carrito');
         const cant = document.querySelector('#cantidad');
-        function guardarcant(){
-            const cantf = cant.value;
-            return cantf;
+        let precio = 10000;
+        const sabor = document.querySelector('#options');
+
+        function guardardatos(){
+            const cantidad = Number(cant.value);
+            const price = precio * cantidad;
+            const ingreso = {
+            cantidad,
+            sabor: sabor.value,
+            precio: price
+            };
+
+            //Obtenemos el carrito existente, o creamos uno nuevo
+            let carritoactual = []; //Creacion del array
+            const carritoviejo = localStorage.getItem('compra');
+
+            //En caso de existir un carrito previo, lo traemos
+            if (carritoviejo) {
+                try {
+                    carritoactual = JSON.parse(carritoviejo);
+                    // Si no es un array, convertirlo
+                    if (!Array.isArray(carritoactual)) {
+                        carritoactual = [carritoactual];
+                    }
+                } catch (e) {
+                    //Inicializa el carrito en caso de que no pueda cargarlo
+                    carritoactual = [];
+                }
+            }
+
+            carritoactual.push(ingreso);
+            
+
+            
+            localStorage.setItem('compra', JSON.stringify(carritoactual));
+        window.location.href = "/CompraF";
         }
 
         seleccion?.addEventListener('change', cambiarimg);
-        cant?.addEventListener('change', guardarcant);
+        carrito?.addEventListener('click', guardardatos);
 
 
 
