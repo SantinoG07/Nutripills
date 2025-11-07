@@ -5,10 +5,53 @@ import FaqS from "../components/FaqS.astro"
 ---
 
 <Layout>
-<div class="bg-black p-4 rounded-lg shadow-xl py-8 mt-12">
+<div class="bg-black p-4 rounded-lg shadow-xl py-8 mt-12 max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold text-white mb-8 text-center">Preguntas Frecuentes</h1>
     <div class="space-y-4">
-    <FaqS pregunta="¿Qué es Nutri Pills?" contenido="Es un suplemento natural para mejorar tu energía y bienestar." ></FaqS>
-
+        <FaqS 
+            pregunta="¿Qué es NutriPills?" 
+            contenido="NutriPills es un suplemento nutricional revolucionario que concentra todos los nutrientes esenciales que tu cuerpo necesita en una sola píldora. Utilizamos tecnología de encapsulación molecular avanzada para garantizar la máxima absorción y efectividad."
+        />
+        
+        <FaqS 
+            pregunta="¿Cómo funciona NutriPills?" 
+            contenido="Nuestra fórmula patentada combina vitaminas, minerales, proteínas y otros nutrientes esenciales en proporciones óptimas. La tecnología de liberación controlada asegura que tu cuerpo absorba los nutrientes de manera gradual a lo largo del día, proporcionando energía sostenida por 24 horas."
+        />
+        
+        <FaqS 
+            pregunta="¿Cuántas píldoras debo tomar al día?" 
+            contenido="Se recomienda tomar una píldora de NutriPills al día, preferiblemente con el desayuno. Una sola cápsula contiene el 100% de los nutrientes diarios recomendados para un adulto promedio."
+        />
+        
+        <FaqS 
+            pregunta="¿NutriPills puede reemplazar todas mis comidas?" 
+            contenido="NutriPills está diseñado para proporcionar nutrición completa, pero recomendamos usarlo como complemento de una dieta balanceada. Puedes usarlo para reemplazar comidas ocasionales cuando estés ocupado, pero lo ideal es combinarlo con alimentos tradicionales para una experiencia más completa."
+        />
+        
+        <FaqS 
+            pregunta="¿Qué sabores están disponibles?" 
+            contenido="Ofrecemos cuatro sabores premium: Clásico (neutro), Wow! (frutas tropicales), So dropdown! (berry mix) y Very select! (cítricos). Todos nuestros sabores son 100% naturales y están diseñados para hacer la experiencia más agradable."
+        />
+        
+        <FaqS 
+            pregunta="¿Es seguro para personas con alergias?" 
+            contenido="NutriPills no contiene gluten, lactosa ni frutos secos. Sin embargo, si tienes alergias específicas o condiciones médicas, recomendamos consultar con tu médico antes de comenzar cualquier nuevo suplemento."
+        />
+        
+        <FaqS 
+            pregunta="¿Cuánto tiempo dura un frasco?" 
+            contenido="Cada frasco de NutriPills contiene 30 píldoras, suficiente para un mes completo si tomas la dosis recomendada de una píldora al día."
+        />
+        
+        <FaqS 
+            pregunta="¿Ofrecen envío gratis?" 
+            contenido="Sí, ofrecemos envío gratuito en todas las compras superiores a $30.000. Para pedidos menores, el costo de envío es de $2.500."
+        />
+        
+        <FaqS 
+            pregunta="¿Puedo devolver el producto si no me gusta?" 
+            contenido="Ofrecemos una garantía de satisfacción de 30 días. Si no estás completamente satisfecho con NutriPills, puedes devolver el producto no utilizado para un reembolso completo."
+        />
     </div>
 </div>
 </Layout>
