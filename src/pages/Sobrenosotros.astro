@@ -1,0 +1,70 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Quiénes Somos | NutriPills">
+  <main class="min-h-screen bg-black text-white px-6 py-20 flex flex-col items-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-center mb-12 text-green-500">
+      Quiénes Somos
+    </h1>
+
+    <!-- Descripción -->
+    <section class="max-w-4xl bg-gray-900/50 rounded-2xl p-8 shadow-lg mb-12">
+      <h2 class="text-2xl font-semibold mb-4 text-green-400">NutriPills - Nutrición del Futuro</h2>
+      <p class="text-gray-200 leading-relaxed">
+        Somos una empresa innovadora dedicada a desarrollar un suplemento nutricional revolucionario
+        que concentra todos los nutrientes esenciales que el cuerpo necesita en una sola píldora.
+        Utilizamos tecnología de encapsulación molecular avanzada con liberación controlada de 24 horas,
+        garantizando energía, equilibrio y bienestar durante todo el día.
+      </p>
+    </section>
+
+    <!-- Misión -->
+    <section class="max-w-4xl bg-gray-900/50 rounded-2xl p-8 shadow-lg mb-12">
+      <h2 class="text-2xl font-semibold mb-4 text-green-400">Misión</h2>
+      <p class="text-gray-200 leading-relaxed">
+        Nuestra misión es transformar la forma en que las personas se alimentan,
+        ofreciendo una solución práctica, eficiente y científicamente validada
+        que promueva una vida saludable.
+        <br /><br />
+        Buscamos optimizar el tiempo de nuestros usuarios sin comprometer su bienestar,
+        impulsando una nutrición inteligente y accesible para todos.
+      </p>
+    </section>
+
+    <!-- Visión -->
+    <section class="max-w-4xl bg-gray-900/50 rounded-2xl p-8 shadow-lg mb-16">
+      <h2 class="text-2xl font-semibold mb-4 text-green-400">Visión</h2>
+      <p class="text-gray-200 leading-relaxed">
+        Ser líderes en innovación nutricional a nivel global,
+        reconocidos por combinar ciencia, tecnología y salud en un solo producto.
+        <br /><br />
+        Queremos construir un futuro donde la nutrición sea simple, sostenible
+        y adaptada al ritmo de vida moderno.
+      </p>
+    </section>
+
+    <!-- Creadores -->
+    <section class="max-w-5xl w-full mb-20">
+      <h2 class="text-3xl font-bold text-center text-green-500 mb-10">
+        Creadores del Proyecto
+      </h2>
+
+      <div class="flex justify-center">
+        <div class="bg-gray-900/60 rounded-2xl shadow-lg p-8 flex flex-col items-center max-w-md">
+          <img
+            src="../../public/findlay.jpg"
+            class="w-44 h-44 rounded-full object-cover border-4 border-green-500 mb-6"
+          />
+          <h3 class="text-xl font-semibold text-green-400 text-center">
+            Juan Ignacio Findlay & Ignacio Díaz Díaz
+          </h3>
+          <p class="text-gray-300 mt-3 text-center text-sm md:text-base">
+            Fundadores de la empresa NutriPills
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Layout>
